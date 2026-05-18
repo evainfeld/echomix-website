@@ -1,0 +1,925 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.1/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.1/sch/docbook.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!-- The XSL transform inserts these values as Hugo frontmatter. -->
+<!-- Additionally, a "date" timestamp is inserted by the stylesheet. -->
+<?title?> 
+<?linkTitle "Katzen chat user guide" ?>  <!-- Section menu link text -->
+<?url "docs/chat_client/user-guide.html" ?> <!-- Required to make image links work -->
+<?description?> <!-- Optional -->
+<?draft "false" ?> <!-- Optional -->
+<?slug "chat" ?> <!-- Optional -->
+<?layout "" ?> <!-- Optional -->
+<?type "" ?> <!-- Optional -->
+<?weight "1" ?> <!-- Optional -->
+
+<!DOCTYPE article[
+    <!ENTITY % shared-content SYSTEM "../../../shared-content.ent">
+    %shared-content;
+    <!ELEMENT xi:include (xi:fallback?) > 
+    <!ATTLIST xi:include 
+        xmlns:xi CDATA #FIXED "http://www.w3.org/2001/XInclude" 
+    href CDATA #REQUIRED 
+    parse (xml|text) "xml" 
+    xpointer CDATA #IMPLIED 
+    encoding CDATA #IMPLIED 
+    accept CDATA #IMPLIED 
+    accept-charset CDATA #IMPLIED 
+    accept-language CDATA #IMPLIED > 
+    <!ELEMENT xi:fallback ANY > 
+    <!ATTLIST xi:fallback 
+        xmlns:xi CDATA #FIXED "http://www.w3.org/2001/XInclude" > 
+    <!ENTITY % local.preface.class "| xi:include"> 
+    <!ENTITY % local.part.class "| xi:include"> 
+    <!ENTITY % local.chapter.class "| xi:include"> 
+    <!ENTITY % local.divcomponent.mix "| xi:include"> 
+    <!ENTITY % local.para.char.mix "| xi:include"> 
+    <!ENTITY % local.info.class "| xi:include"> 
+    <!ENTITY % local.common.attrib "xml:base CDATA #IMPLIED" >
+]>
+
+<section xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.1" xml:id="client_guide">
+    <info>
+        <title xml:id="client_guide.title">&chat_client; chat client guide [Pre-release]</title>
+        <!-- Match to "title" or "linkTitle" processing instruction above. -->
+    </info>
+    <para>This guide introduces the &chat_client; chat client. With &chat_client; you can securely
+        share one-to-one and group messages with other &chat_client; users. &chat_client; relies on
+        &program_name;, an advanced mixnet system designed for people who have something to say, but
+        who also value their anonymity. Anonymity is not the same thing as encryption, which
+        protects the <emphasis>content</emphasis> of communication over the Internet. Anonymity is
+        about protecting <emphasis>people</emphasis>. </para>
+    <para>For technical information about how &program_name; and mixnets in general work, see <link
+            xlink:href="https://web.archive.org/web/20240813022824/https://github.com/katzenpost/docs/blob/master/mixnet_academy/syllabus.rst#mix-network-fundamentals"
+            >Learn Mix Networks for Great Good</link> and <link
+            xlink:href="https://katzenpost.network/docs/">Katzenpost Documentation</link>. To learn
+        more about <emphasis>why</emphasis> &program_name; works as it does, see <link
+            xlink:href="sdsdsd">Frequently asked questions</link> .</para>
+    <section>
+        <title>Installing and starting &chat_client;</title>
+        <para>The &chat_client; client is available as Python code on <link
+                xlink:href="https://github.com/katzenpost/katzenqt">GitHub</link>. To run it, you
+            need a computer that supports the Linux operating system. (We have tested &chat_client;
+            on <link xlink:href="https://www.debian.org/">Debian GNU/Linux</link> 13 and <link
+                xlink:href="https://ubuntu.com/">Ubuntu</link> 25.04 and 25.10.) </para>
+        <para><emphasis role="bold">Prerequisites</emphasis></para>
+        <itemizedlist>
+            <listitem>
+                <para>Ensure that <emphasis role="bold">sudo</emphasis> is properly configured for
+                    your normal user. Ubuntu systems generally do this by default. Debian systems do
+                    not. For more information, see <link xlink:href="https://wiki.debian.org/sudo"
+                        >sudo</link> in the Debian wiki.</para>
+            </listitem>
+            <listitem>
+                <para>Add ~/.local/bin/ to your normal user $PATH and open a new terminal to perform
+                    the installation.</para>
+            </listitem>
+            <listitem>
+                <para>Intall <emphasis role="bold">pip</emphasis> and <emphasis role="bold"
+                        >uv</emphasis>.</para>
+            </listitem>
+        </itemizedlist>
+        <para><emphasis role="bold">To install KatzenQT using </emphasis>make<emphasis role="bold">
+                targets</emphasis></para>
+        <para>From the root directory of the KatzenQT repository, complete the following procedure
+            as a normal user.<procedure>
+                <step>
+                    <para>Run <emphasis role="bold">make dep</emphasis>.</para>
+                </step>
+                <step>
+                    <para>Run <emphasis role="bold">make run</emphasis>.</para>
+                </step>
+            </procedure></para>
+        <para>Run <emphasis role="bold">make</emphasis> to display a full list of developer options. </para>
+    </section>
+    <section xml:id="installation">
+        <info>
+            <title xml:id="installation.title">Installing and starting &chat_client; [Manual
+                method]</title>
+        </info>
+        <procedure>
+            <step>
+                <title>Install required software packages</title>
+                <para>To prepare to access and build the &chat_client; code, run the following
+                    commands to be sure that you have the tools installed. You must have root
+                    privileges to do this.</para>
+                <programlisting><prompt># </prompt><command>apt update</command>
+<prompt># </prompt><command>apt install git python3 make python3-venv</command></programlisting>
+            </step>
+            <step>
+                <title>Install the Katzenpost Git repository</title>
+                <para>Katzenpost is a free and open source software project dedicated to researching
+                    and developing mix network protocols.</para>
+                <para>Open a virtual terminal and clone the Katzenpost repository at <link
+                        xlink:href="https://github.com/katzenpost/namenlos"/> as follows.</para>
+                <programlisting>~$ <command>git clone https://github.com/katzenpost/katzenpost.git</command></programlisting>
+            </step>
+            <step>
+                <title>Install the &chat_client_QT; Git repository</title>
+                <substeps>
+                    <step>
+                        <para>Open a virtual terminal and clone the &chat_client; code repository at
+                                <link xlink:href="https://github.com/katzenpost/katzenqt"/> as
+                            follows.<programlisting><prompt>~$ </prompt><command>git clone https://github.com/katzenpost/katzenqt.git</command></programlisting></para>
+                    </step>
+                    <?oxy_custom_start type="oxy_content_highlight" color="255,255,0"?>
+                </substeps>
+            </step><?oxy_custom_end?>
+            <step>
+                <title>Build client daemon and install configuration files</title>
+                <para>To connect to the mix network, &chat_client_QT; requires the &program_name;
+                    multiplexing client daemon to be present and configured. Complete the following
+                    steps to provide the daemon binary and the required configuration files. </para>
+                <substeps>
+                    <step>
+                        <para>In the &program_name; repository, build the daemon as
+                            follows.<programlisting><prompt>~/katzenpost/cmd/kpclientd$ </prompt><command>go build -v</command></programlisting></para>
+                    </step>
+                    <step>
+                        <para>Copy the newly built <emphasis role="bold">kpclientd</emphasis> binary
+                            to the &chat_client_QT; repository as
+                            follows:<programlisting><prompt>~/katzenpost/cmd/kpclientd$ </prompt><command>cp kpclientd ~/katzenqt/</command></programlisting></para>
+                    </step>
+                    <step>
+                        <para>Copy the configuration file for <emphasis role="bold"
+                                >kpclientd</emphasis> from the Namenlos repository to the
+                            &chat_client_QT; repository as
+                            follows.<programlisting><prompt>~/namenlos/configs/$ </prompt><command>cp client2.toml ~/katzenqt/</command></programlisting></para>
+                    </step>
+                    <step>
+                        <para>Copy the configuration file for the thin-client shim from the Namenlos
+                            repository to the &chat_client_QT; repository as
+                            follows.<programlisting><prompt>~/namenlos/configs/$ </prompt><command>cp thinclient.toml ~/katzenqt/</command></programlisting></para>
+                    </step>
+                </substeps>
+                <note>
+                    <para>This action replaces the thinclient.toml file that is already present in
+                        the repository. The default file is not configured to use the Namenlos
+                        network.</para>
+                </note>
+            </step>
+            <step>
+                <para><emphasis role="bold">Start the client daemon</emphasis></para>
+                <para>One (and only one) instance of <emphasis role="bold">kpclientd</emphasis> must
+                    be running on your system before you start &chat_client_QT;. Start it with
+                    following
+                    command:<programlisting><prompt>~/katzenqt$ </prompt><command>././kpclientd -c config/client2.toml</command></programlisting></para>
+                <para>The terminal from which you ran <emphasis role="bold">kpclientd</emphasis>
+                    must remain open during operation, and provides mix-network access
+                    logging.</para>
+            </step>
+            <step>
+                <title>Build and start &chat_client_QT;</title>
+                <para>In another terminal, in the root directory of the &chat_client_QT; repository,
+                    complete the following steps.</para>
+                <substeps>
+                    <step>
+                        <para>Check out the currently required development branch of the repository
+                            as follows.</para>
+                        <programlisting><prompt>~/katzenqt$ </prompt><command>git checkout message_box_index_length_validation</command></programlisting>
+                    </step>
+                    <step>
+                        <para>Create a virtual Python environment, load additional required
+                            software, and start &chat_client_QT; using the following
+                            commands.</para>
+                        <programlisting><prompt>~/katzenqt$ </prompt><command>python3 -m venv myvenv</command>
+<prompt>~/katzenqt$ </prompt><command>source myvenv/bin/activate</command>
+<prompt>~/katzenqt$ </prompt><command>pip install --upgrade pip</command>
+<prompt>~/katzenqt$ </prompt><command>pip install 'git+https://github.com/katzenpost/thin_client@487d2b8e46440abba5bb4db95a168353de2d45d9'</command>
+<prompt>~/katzenqt$ </prompt><command>pip install -e .</command>
+<prompt>~/katzenqt$ </prompt><command>make</command></programlisting>
+                        <para>This terminal must remain open while running &chat_client_QT;. The
+                            terminal displays information that you will need to cut and paste to
+                            complete the procedures described below.</para>
+                        <note>
+                            <para>For testing, you can open multiple &chat_client_QT; clients with
+                                discrete histories by invoking <emphasis role="bold">make</emphasis>
+                                with a variable as follows:</para>
+                            <programlisting><prompt>$ </prompt><command>KQT_STATE=A make</command>
+<prompt>$ </prompt><command>KQT_STATE=B make</command>   
+        
+Etc.</programlisting>
+                            <para>When you are done with these clients, you can remove them all as
+                                follows.</para>
+                            <programlisting><prompt>$ </prompt><command>rm /home/&lt;username>/.local/share/katzenqt/*</command></programlisting>
+                        </note>
+                    </step>
+                </substeps>
+            </step>
+        </procedure>
+    </section>
+    <section xml:id="communicating">
+        <title xml:id="communicating.title">Communicating through the &chat_client; client</title>
+        <para>This section describes how to configure and use &chat_client; for secure, anonymous
+            communication. </para>
+        <para>Like many other chat clients, &chat_client; exhibits two panes, one for contacts and
+            one for messages, and a number of communication modes such as text chat, file transfer,
+            and voice. </para>
+        <para>The following screen capture shows &chat_client; as it appears when opened for the
+            first time.</para>
+        <figure>
+            <info>
+                <title/>
+            </info>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="pix/1-clip.jpg" scale="60"/>
+                </imageobject>
+                <caption>
+                    <para><emphasis role="bold">Figure 1.</emphasis> This screen capture shows the
+                        elements of the &chat_client; client interface prior to configuration or
+                        use.</para>
+                </caption>
+            </mediaobject>
+        </figure>
+        <para>&chat_client; consists of a menu bar, a toolbar, two panes, and a status bar (not
+            visible). <itemizedlist>
+                <listitem>
+                    <para>The <emphasis role="bold">Conversations and contacts</emphasis> pane
+                        displays existing conversations and the contacts specific to them. </para>
+                </listitem>
+                <listitem>
+                    <para>The <emphasis role="bold">Messages</emphasis> pane displays the title of
+                        the selected conversation (if any), its message log, an <emphasis role="bold">Invite a contact</emphasis> button for adding new
+                        participants, and a text box near the bottom for typing new messages.</para>
+                </listitem>
+                <listitem>
+                    <para>Buttons in the toolbar include <emphasis role="bold">New
+                            conversation</emphasis> (opening a dialog to configure a conversation),
+                            <emphasis role="bold">Accept invitation</emphasis> (opening a dialog to
+                        accept or refuse an invitation from another user), <emphasis role="bold"
+                            >Documentation</emphasis> (activating, once implemented, the internal
+                        help system), and <emphasis role="bold">Quit</emphasis> (which shuts down
+                        the client).</para>
+                </listitem>
+                <listitem>
+                    <para>The tabs at the bottom of the <emphasis role="bold">Messages</emphasis>
+                        pane allow selection of a communication mode.</para>
+                </listitem>
+            </itemizedlist></para>
+        <note>
+            <para>At present, only text chat works. Grayed out elements in the &chat_client;
+                interface are not yet implemented.</para>
+        </note>
+        <section xml:id="contacts">
+            <info>
+                <title xml:id="contacts.title">About contacts</title>
+            </info>
+            <para>Despite appearances, &chat_client;'s emphasis on anonymity means that familiar
+                terms take on new meanings, particularly the idea of a "contact."</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Contact names are arbitrary. Contacts in one conversation are unconnected
+                        with contacts in other conversations. Each chat participant can choose a
+                        unique name for each conversation.</para>
+                </listitem>
+                <listitem>
+                    <para>&chat_client; and &program_name; operate with no information about the
+                        real-world identities behind contacts. There are no e-mail addresses,
+                        telephone numbers, postal addresses, or anything similar. </para>
+                </listitem>
+                <listitem>
+                    <para>Without phone numbers or email as anchors for identity, &chat_client;
+                        users require a real-world encounter to verify who they are and to share
+                        cryptographic secrets. This kind of contact bootstrapping occurs out-of-band
+                        (OOB), that is, without reliance on the primary communication channel, which
+                        is &chat_client;. The concept is similar to the practice of PGP email users
+                        who hold in-person key-signing parties to build a <link
+                            xlink:href="https://en.wikipedia.org/wiki/Web_of_trust">web of
+                            trust</link>. </para>
+                </listitem>
+            </itemizedlist>
+            <section xml:id="conversations">
+                <info>
+                    <title xml:id="conversations.title">Creating conversations</title>
+                </info>
+                <para>The first thing that a new user of &chat_client; must do is create a
+                    conversation. This must happen before you can invite contacts or accept
+                    invitations.</para>
+                <para><emphasis role="bold">To create a conversation</emphasis></para>
+                <para>
+                    <procedure>
+                        <step>
+                            <para>Open &chat_client;. Until a conversation has been created, the
+                                    <emphasis role="bold">Messages</emphasis> pane prompts you to
+                                create one.</para>
+                        </step>
+                        <step>
+                            <para>In the toolbar, click the <emphasis role="bold">New
+                                    conversation</emphasis> button.</para>
+                        </step>
+                        <step>
+                            <para>In the <emphasis role="bold">New conversation</emphasis> window,
+                                type a name in the <emphasis role="bold">Choose conversation
+                                    name</emphasis> field. This name is how you identify the
+                                conversation in your own &chat_client; client. It may differ from
+                                what your contact calls their corresponding conversation. Click
+                                    <emphasis role="bold">OK</emphasis> when finished.</para>
+                            <para>In the following screen capture, the <emphasis role="bold">New
+                                    conversation</emphasis> field is being filled out.</para>
+                            <figure>
+                                <info>
+                                    <title/>
+                                </info>
+                                <mediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="pix/2-clip.jpg" scale="60"/>
+                                    </imageobject>
+                                    <caption>
+                                        <para><emphasis role="bold">Figure 2.</emphasis> In this
+                                            example, a user creates a first conversation called
+                                                <emphasis role="bold">My first
+                                                conversation</emphasis>.</para>
+                                    </caption>
+                                </mediaobject>
+                            </figure>
+                        </step>
+                        <step>
+                            <para>Type a name for yourself in the field labeled <emphasis
+                                    role="bold">Choose (your) name displayed to the other
+                                    user(s)</emphasis>. Your contacts will see this name when they
+                                accept your invitation.</para>
+                            <para>The following screen capture shows a name that was typed in by the
+                                user.</para>
+                            <figure>
+                                <info>
+                                    <title/>
+                                </info>
+                                <mediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="pix/3-clip.jpg" scale="60"/>
+                                    </imageobject>
+                                    <caption>
+                                        <para><emphasis role="bold">Figure 3.</emphasis> The user
+                                            types in "Max" as his name in the context of this
+                                            conversation.</para>
+                                    </caption>
+                                </mediaobject>
+                            </figure>
+                        </step>
+                        <step>
+                            <para>Click <emphasis role="bold">OK</emphasis> when finished.</para>
+                            <para>Now, in the <emphasis role="bold">Conversations and
+                                    contacts</emphasis> pane, the name of your new conversation is
+                                displayed along with your display name. In the <emphasis role="bold"
+                                    >Messages</emphasis> pane, &chat_client; prints a greeting
+                                message.</para>
+                            <para>The final result resembles the following:</para>
+                            <figure>
+                                <info>
+                                    <title/>
+                                </info>
+                                <mediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="pix/4-clip.jpg" scale="60"/>
+                                    </imageobject>
+                                    <caption>
+                                        <para><emphasis role="bold">Figure 4.</emphasis> In the
+                                                <emphasis role="bold">Conversations and
+                                                contacts</emphasis> pane, you can select a
+                                            conversation. The selected conversation will be
+                                            displayed in the <emphasis role="bold">Messages</emphasis> pane. You can use the <emphasis role="bold">Type to filter contacts</emphasis> text
+                                            box to find a specific contact name and the
+                                            conversations that contain it.</para>
+                                    </caption>
+                                </mediaobject>
+                            </figure>
+                        </step>
+                    </procedure>
+                </para>
+                <para>You can create any number of conversations, each one separated completely from
+                    other conversations. </para>
+            </section>
+            <section xml:id="adding_contacts">
+                <info>
+                    <title xml:id="adding_contacts.title">Establishing contacts</title>
+                </info>
+                <para>Once you have a created a conversation, you can begin adding contacts to it.
+                    As a user of &chat_client;, you have no fixed user name or password; instead,
+                    you assign a name of your choosing for each conversation and potentially for
+                    each contact.</para>
+                <para>A user setting up a contact generates an authentication token called a
+                        <emphasis>voucher</emphasis>. The voucher is a Base64-encoded string with
+                    the following contents:<itemizedlist>
+                        <listitem>
+                            <para>a display name </para>
+                        </listitem>
+                        <listitem>
+                            <para>a mixnet storage address that doubles as read permission </para>
+                        </listitem>
+                    </itemizedlist></para>
+                <para>A user who makes a request for a new contact delivers the voucher out-of-band
+                    to one or more recipients, who enter the invitation string into &chat_client;
+                    and, by accepting it, send their own addresses and signed read permissions to
+                    the first user, who publishes the shared read permissions for all group members
+                    to see. When the process is complete, the new contact names display in the list
+                    of contacts for each participant in the conversation. </para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="pix/simple-voucher-handshake.png" scale="60"/>
+                        </imageobject>
+                        <caption>
+                            <para><emphasis role="bold">Figure 5.</emphasis> The diagram illustrates
+                                two important aspects of &program_name; and &chat_client; security.
+                                First, the initial authentication of a contact is done in a
+                                face-to-face meeting rather than electronically. Second, all
+                                messaging consists of queries to the mixnet, which operates somewhat
+                                as a dead-drop. Max and Moritz post materials there, and authorize
+                                each other to read those materials, but there is no direct contact
+                                between them after the initial real-world meeting. </para>
+                        </caption>
+                    </mediaobject>
+                </informalfigure>
+                <important>
+                    <para>We recommend writing the invitation string on a piece paper, and
+                        presenting this physically to the person or persons you are inviting. The
+                        paper bearing the string should be guarded carefully and destroyed after
+                        use.</para>
+                </important>
+                <warning>
+                    <para>It is possible to simply send your invitation through an alternative
+                        electronic channel. However, doing this permanently degrades the
+                        &program_name; anonymity protections to the level of anonymity offered by
+                        the channel that you used.</para>
+                </warning>
+                <para><emphasis role="bold">To request a new contact</emphasis></para>
+                <para>
+                    <procedure>
+                        <step>
+                            <para>Open &chat_client; as described above.</para>
+                        </step>
+                        <step>
+                            <para>With the desired conversation selected, click <emphasis role="bold">Invite a contact</emphasis> in the <emphasis role="bold">Messages</emphasis> pane.</para>
+                        </step>
+                        <step>
+                            <para>In the <emphasis role="bold">Invite contact</emphasis> window,
+                                type your desired display name in the field labeled <emphasis
+                                    role="bold">Choose (your) name displayed to the other
+                                    user</emphasis>, then click <emphasis role="bold"
+                                >OK</emphasis>.</para>
+                            <para>The following screen capture shows the <emphasis role="bold"
+                                    >Invite contact</emphasis> window with "Max" specified as the
+                                issuer. </para>
+                            <figure>
+                                <info>
+                                    <title/>
+                                </info>
+                                <mediaobject>
+                                    <imageobject>
+                                        <imagedata fileref="pix/5-clip.jpg" scale="60"/>
+                                    </imageobject>
+                                    <caption>
+                                        <para><emphasis role="bold">Figure 6.</emphasis> The
+                                            invitation string has "Max" embedded as its creator,
+                                            which is helpful to the recipient in the next
+                                            steps.</para>
+                                    </caption>
+                                </mediaobject>
+                            </figure>
+                        </step>
+                        <step>
+                            <para>A pop-up window displays the Base64 string that was created. Save
+                                this string long enough to copy it to paper or save electronically.<figure>
+                                    <info>
+                                        <title/>
+                                    </info>
+                                    <mediaobject>
+                                        <imageobject>
+                                            <imagedata fileref="pix/6-clip.png" scale="60"/>
+                                        </imageobject>
+                                        <caption>
+                                            <para><emphasis role="bold">Figure 7.</emphasis> The
+                                                voucher's Base64 string is highlighted in the
+                                                illustration. Record it before closing the
+                                                window.</para>
+                                        </caption>
+                                    </mediaobject>
+                                </figure></para>
+                        </step>
+                        <step>
+                            <para>Complete the invitation process by providing the invitation string
+                                out-of-band to your intended contact.</para>
+                        </step>
+                    </procedure>
+                </para>
+                <para><emphasis role="bold">To accept an invitation that you have
+                        received</emphasis></para>
+                <procedure>
+                    <step>
+                        <para>Open &chat_client;. (In the following example, our perspective shifts
+                            to Moritz, who is the user receiving Max's invitation.)</para>
+                    </step>
+                    <step>
+                        <para>In the toolbar, click <emphasis role="bold">Accept
+                                invitation</emphasis>.</para>
+                    </step>
+                    <step>
+                        <para>In the <emphasis role="bold">Accept invitation</emphasis> window, type
+                            or paste the invitation string into the field labeled <emphasis
+                                role="bold">Enter an invitation you received</emphasis>. Your client
+                            should resemble the following:</para>
+                        <figure>
+                            <info>
+                                <title/>
+                            </info>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="pix/7-clip.jpg" scale="60"/>
+                                </imageobject>
+                                <caption>
+                                    <para><emphasis role="bold">Figure 8.</emphasis> Moritz has
+                                        entered the invitation string into the <emphasis role="bold"
+                                            >Accept invitation</emphasis> window.</para>
+                                    <?oxy_custom_start type="oxy_content_highlight" color="255,255,0"?>
+                                </caption><?oxy_custom_end?>
+                            </mediaobject>
+                        </figure>
+                    </step>
+                    <step>
+                        <para>To approve the display name of the new contact, click <emphasis
+                                role="bold">Yes</emphasis>. To cancel the acceptance process, click
+                                <emphasis role="bold">No</emphasis>.</para>
+                        <figure>
+                            <info>
+                                <title/>
+                            </info>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="pix/8-clip.jpg" scale="60"/>
+                                </imageobject>
+                                <caption>
+                                    <para><emphasis role="bold">Figure 9.</emphasis> Moritz can
+                                        either accept or reject Max's display name. Rejecting it
+                                        cancels the acceptance.</para>
+                                    <?oxy_custom_start type="oxy_content_highlight" color="255,255,0"?>
+                                </caption><?oxy_custom_end?>
+                            </mediaobject>
+                        </figure>
+                    </step>
+                    <step>
+                        <para>Moritz must start the same procedure in reverse. In his selected
+                            conversation, he clicks <emphasis role="bold">Invite contact</emphasis>,
+                            generates a Base64 string, and conveys it to Max. Max clicks <emphasis
+                                role="bold">Accept invitation</emphasis>, types the Base64 string
+                            into his client, and clicks <emphasis role="bold">OK</emphasis>
+                            twice.</para>
+                    </step>
+                </procedure>
+                <para>As shown below, Max and Moritz now appear in each other's contact lists, and
+                    they can begin exchanging messages. The procedures described here can be
+                    generalized to groups of any size.</para>
+                <para>
+                    <note>
+                        <para>When you look at the perspectives of Max and Moritz side-by-side, as
+                            in <emphasis role="bold">Figure 10</emphasis> below, something strange
+                            pops out: Their (shared?) conversation has two different names. This
+                            provides a glimpse into the anonymity architecture behind &chat_client;,
+                            and is explained in the FAQ:<xref
+                                linkend="faq_conversations_and_contacts"/></para>
+                    </note>
+                </para>
+                <figure>
+                    <info>
+                        <title/>
+                    </info>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="pix/9-clip.png" scale="60"/>
+                        </imageobject>
+                        <caption>
+                            <para><emphasis role="bold">Figure 10.</emphasis> Max and Moritz are
+                                shown with their respective conversations and contact lists. </para>
+                        </caption>
+                    </mediaobject>
+                </figure>
+            </section>
+            <section xml:id="messaging">
+                <title xml:id="messaging.title">Exchanging messages in a conversation</title>
+                <para>&chat_client; resembles other chat programs in its procedure for exchanging
+                    messages. This section provides an example of a conversation between two
+                    participants. </para>
+                <procedure>
+                    <title>To exchange messages between two contacts</title>
+                    <para>This procedure picks up where the previous section, <xref
+                            linkend="adding_contacts"/>, left off. The examples show both sides of
+                        the Max/Moritz conversation.</para>
+                    <step>
+                        <para>Max composes a message to Moritz by typing it in the <emphasis
+                                role="bold">Single-line message</emphasis> box at the bottom of the
+                                <emphasis role="bold">Messages</emphasis> pane, as shown in the
+                            following screen capture.</para>
+                        <figure>
+                            <info>
+                                <title/>
+                            </info>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="pix/10-clip.png" scale="60"/>
+                                </imageobject>
+                                <caption>
+                                    <para><emphasis role="bold">Figure 11.</emphasis> Max can see
+                                        what conversation he is in by looking at the highlighted
+                                        conversation name in <emphasis role="bold">Conversations and
+                                            contacts</emphasis> pane, and at the heading in the
+                                            <emphasis role="bold">Messages</emphasis> pane. </para>
+                                </caption>
+                            </mediaobject>
+                        </figure>
+                    </step>
+                    <step>
+                        <para>When Max is done typing the message, he presses Enter to send
+                            it.</para>
+                        <figure>
+                            <info>
+                                <title/>
+                            </info>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="pix/12-clip.png" scale="60"/>
+                                </imageobject>
+                                <caption>
+                                    <para><emphasis role="bold">Figure 12.</emphasis> Max's sent
+                                        message is visible in his <emphasis role="bold"
+                                            >Messages</emphasis> pane. The in-flight arrow next to
+                                        his name indicates that Moritz has not yet received the
+                                        message, as is apparent in his &chat_client; window.</para>
+                                </caption>
+                            </mediaobject>
+                        </figure>
+                    </step>
+                    <step>
+                        <para>In the following screen capture, Moritz has received Max's
+                            message.</para>
+                        <figure>
+                            <info>
+                                <title/>
+                            </info>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="pix/13-clip.png" scale="60"/>
+                                </imageobject>
+                                <caption>
+                                    <para><emphasis role="bold">Figure 13.</emphasis> Moritz's
+                                        &chat_client; window now displays Max's message, and the
+                                        in-flight arrow has disappeared from Max's window.</para>
+                                </caption>
+                            </mediaobject>
+                        </figure>
+                    </step>
+                    <step>
+                        <para>In the next screen capture, Moritz types and sends a reply to
+                            Max.</para>
+                        <figure>
+                            <info>
+                                <title/>
+                            </info>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="pix/15-clip.png" scale="60"/>
+                                </imageobject>
+                                <caption>
+                                    <para><emphasis role="bold">Figure 14.</emphasis> With Moritz's
+                                        message sent, his <emphasis role="bold">Messages</emphasis>
+                                        pane shows the in-flight arrow pending delivery.</para>
+                                </caption>
+                            </mediaobject>
+                        </figure>
+                        
+                    </step>
+                    <step>
+                        <para>In this last screen capture, Max has received Moritz's reply and they
+                            continued to converse.</para>
+                        <figure>
+                            <info>
+                                <title/>
+                            </info>
+                            <mediaobject>
+                                <imageobject>
+                                    <imagedata fileref="pix/17-clip.png" scale="60"/>
+                                </imageobject>
+                                <caption>
+                                    <para><emphasis role="bold">Figure 15.</emphasis> Success!
+                                        Several messages have been exchanged and the absence of
+                                        in-flight arrows indicates that no messages are pending at
+                                        the moment.</para>
+                                </caption>
+                            </mediaobject>
+                        </figure>
+                    </step>
+                </procedure>
+            </section>
+        </section>
+    </section>
+    <section xml:id="faq">
+        <title xml:id="faq.title">Frequently asked questions</title>
+        <para/>
+        <section xml:id="faq_anonymity">
+            <title xml:id="faq_anonymity.title">What kind of user needs anonymity
+                protection?</title>
+            <para>Here are some examples of users who require anonymity.</para>
+            <itemizedlist>
+                <listitem>
+                    <para>People and groups who are likely to be under surveillance by government
+                        entities, whether dishonest bureaucrats, corrupt police forces, or
+                        intelligence agencies.</para>
+                </listitem>
+                <listitem>
+                    <para>People facing business or government censorship.</para>
+                </listitem>
+                <listitem>
+                    <para>Businesses aware of the dangers of leaking internal information to their
+                        local and global competitors or to their own or other governments.</para>
+                </listitem>
+                <listitem>
+                    <para>Journalists, and anyone who communicates with a journalist.</para>
+                </listitem>
+                <listitem>
+                    <para>Whistle-blowers.</para>
+                </listitem>
+                <listitem>
+                    <para>Non-profit organizations engaging in advocacy that earns them enemies with
+                        powerful surveillance capabilities.</para>
+                </listitem>
+                <listitem>
+                    <para>People worried about the utter insecurity of personal data stored in both
+                        cloud and on-premises databases that are accessible from the
+                        Internet.</para>
+                </listitem>
+                <listitem>
+                    <para>People who want to use the Internet but dislike being the raw material
+                        that feeds <link xlink:href="https://en.wikipedia.org/wiki/Surveillance_capitalism">surveillance capitalism</link>.</para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="faq_metadata">
+            <title xml:id="faq_metadata.title">I use an end-to-end encrypted chat service. Is that
+                good enough?</title>
+            <para>Not necessarily. Your identity and other <emphasis>metadata</emphasis> may be more
+                interesting to snoops than your <emphasis>data</emphasis> (what you say). Your
+                network of contacts – who is talking to whom – is often the most valuable
+                information about you. Legal protections for metadata are weaker than for
+                communication content. Here are some examples:</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Internet businesses routinely harvest and sell sensitive identity data to
+                        profit from invasively personalized ads and other sources.</para>
+                </listitem>
+                <listitem>
+                    <para>Governments, especially law enforcement, will collect and store any data
+                        about your identity, movements, employment, and political views that they
+                        can get their hands on, sacrificing the privacy of millions of innocent
+                        people to catch a tiny number of suspected criminals.</para>
+                </listitem>
+                <listitem>
+                    <para>Actual criminals make daily use of the data they steal from these same
+                        businesses and governments, enabling identity theft, credit-card fraud, and
+                        extortion.</para>
+                </listitem>
+                <listitem>
+                    <para>While the <emphasis>content</emphasis> of telephone communication is
+                        shielded by strong limitations on wire-tapping, far weaker rules restrict
+                        the use of <link xlink:href="https://en.wikipedia.org/wiki/Pen_register">pen
+                            register / trap and trace devices</link> to capture the identities of
+                        people engaged in private conversations. </para>
+                </listitem>
+                <listitem>
+                    <para>The United States Postal Service routinely photographs and stores the
+                        address information of mail passing through its system. The USPS <link xlink:href="https://www.washingtonpost.com/news/federal-eye/wp/2014/11/20/postal-service-almost-never-denies-mail-surveillance-requests/">almost never</link> denies requests for this information. from <link xlink:href="https://www.nytimes.com/2013/07/04/us/monitoring-of-snail-mail.html">law enforcement and others</link>.</para>
+                </listitem>
+                <listitem>
+                    <para>Most dramatically, US intelligence agencies use cell phone metadata
+                        (account data and geolocation) to target suspected terrorists for drone and
+                        missile attacks. As National Security Agency Director Gen. Michael Hayden
+                        famously <link xlink:href="https://abcnews.go.com/blogs/headlines/2014/05/ex-nsa-chief-we-kill-people-based-on-metadata">stated</link>, "We kill people based on metadata."</para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="faq_nothingtohide">
+            <title xml:id="faq_nothingtohide.title">I am just an ordinary person with nothing to
+                hide. Why should I worry about being anonymous?</title>
+            <para><emphasis>You</emphasis> do not decide if you have something to hide. The
+                businesses, governments, and individuals snooping into your data decide that.</para>
+        </section>
+        <section xml:id="faq_conversations_and_contacts">
+            <title xml:id="faq_conversations_and_contacts.title">How do conversations and contacts
+                actually work? </title>
+            <para>The &chat_client; and the &program_name; system devote a great deal of engineering
+                effort to prevent surveillance adversaries from discovering who you are and whom you
+                are talking with. Importantly, after your initial meeting to hand off an invitation,
+                you have no actual contact with your contacts. Instead, users communicate solely
+                with the &program_name; mixnet, which serves as a dead-drop for each user's
+                messages. </para>
+            <para>Here is a very sparse summary of how the pieces fit together to provide usable
+                communication despite all of the anonymization and indirection.</para>
+            <itemizedlist>
+                <listitem>
+                    <para>Conversations are the main organizing principle in &chat_client;. </para>
+                </listitem>
+                <listitem>
+                    <para>Contacts are members of a conversation, and they exist only in the context
+                        of a particular conversation. Contacts must have no discoverable relation to
+                        real-world identities, or even to repeated instances of themselves. All
+                        names are display names. All display names are arbitrary.</para>
+                </listitem>
+                <listitem>
+                    <para>Conversations may have any number of contacts, that is, all conversations
+                        are <emphasis>groups</emphasis>. One-to-one conversations are groups with
+                        exactly two members.</para>
+                </listitem>
+                <listitem>
+                    <para>The conversations that you see listed in <emphasis role="bold">Conversations and contacts</emphasis> are ones that you created and
+                        named. Your contacts see their own conversations that they created and
+                        named. </para>
+                </listitem>
+                <listitem>
+                    <para>When you create a conversation, you are also creating a <emphasis>message
+                            stream</emphasis>. A message stream is an address in the distributed
+                        internal storage of the mixnet. It can contain any number of linked, ordered
+                        messages posted there by its owner.</para>
+                </listitem>
+                <listitem>
+                    <para>You have <emphasis>write permissions</emphasis> to message streams that
+                        you created; nobody else does.</para>
+                </listitem>
+                <listitem>
+                    <para>You can share <emphasis>read permissions</emphasis> to a message stream
+                        that you created with other users. (And vice versa.)</para>
+                </listitem>
+                <listitem>
+                    <para>The view of a conversation that you see in your <emphasis role="bold">Messages</emphasis> pane is a <emphasis>virtual</emphasis> message log
+                        collated by &chat_client;. It is based on read permissions that you and your
+                        contacts have mutually shared in this specific context. This is how you can
+                        all see the same virtual log of messages when you are each looking at a
+                        different conversation. </para>
+                </listitem>
+            </itemizedlist>
+        </section>
+        <section xml:id="faq_oob">
+            <title xml:id="faq_oob.title">What is this out-of-band (OOB) secret-sharing
+                stuff?</title>
+            <para>The OOB invitation is the first step in guaranteeing anonymity in the face of
+                electronic surveillance. It is explicitly <emphasis>not</emphasis> electronic. OOB
+                is a solution to a difficult and fundamental problem of encrypted communications:
+                    <link xlink:href="https://en.wikipedia.org/wiki/Key_exchange">key
+                    exchange</link>. A real-world solution recommends itself because almost no
+                electronic solution protects anonymity. </para>
+            <para>The following diagram details the data exchanges involved in setting up contacts.
+                For more information, see <link xlink:href="https://katzenpost.network/docs/specs/group_chat.html">&program_name; Group Chat Design</link>.</para>
+            <informalfigure>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata fileref="pix/kp-ladders-vouchers.png" scale="50"/>
+                    </imageobject>
+                    <caption>
+                        <para><emphasis role="bold">Figure 16.</emphasis> This diagram illustrates
+                            how &chat_client_QT; (and its operators, Max and Moritz) interact with
+                            the &program_name; mix network. The most distinctive features of this
+                            architecture are the initial out-of-band step to authenticate a user and
+                            the dead-drop structure that allows subsequent electronic communication
+                            that is neither direct nor persistent.</para>
+                    </caption>
+                </mediaobject>
+            </informalfigure>
+        </section>
+        <section xml:id="faq_audio_video">
+            <title xml:id="faq_audio_video.title">Will &chat_client; ever have audio chat, or video
+                chat?</title>
+            <para>Mixnet-based communications have high latency by design. This has little impact on
+                low-bandwidth text communications, but it is very likely disqualifying for video.
+                Therefore we do not plan to offer video chat. Audio, however, can be more readily
+                compressed and optimized than video, and we do plan to offer video chat in the
+                future. For more information see <link xlink:href="https://katzenpost.network/docs/audio_eng/">Audio Engineering
+                    Considerations for a Modern Mixnet</link>.</para>
+        </section>
+        <section xml:id="faq_legal">
+            <title xml:id="faq_legal.title">Is this legal?</title>
+            <para>Let's take "this" as meaning end-to-end encryption and metadata minimization. The
+                answer depends on the jurisdiction and the political weather. Countries such as
+                China and Iran that attempt to exert complete and ruthless control over citizens'
+                communication would probably forbid and block &chat_client; just as they do Signal
+                and Tor, with a full range of possible punishments for offenders. However, Western
+                democracies also enforce comprehensive surveillance over their citizens,
+                particularly as a tool for law enforcement or flexibly defined "national security."
+                The United States, the United Kingdom, and members of the European Union try
+                constantly to expand legal surveillance and to pass laws mandating backdoors in
+                encrypted devices, so far being thwarted either by public advocacy or by the
+                commercial self-interest of technology vendors. Users of surveillance-resistant
+                communication tools must understand the laws that apply to them, keep in mind the
+                ways that those laws are stretched and broken by corrupt police, and protect
+                themselves appropriately. If you plan to violate your local laws while trusting in
+                clever technology to keep you safe, remember that you must make excellent technology
+                choices, use the tools perfectly, maintain operational security worthy of a
+                clandestine agent, and have very good luck. In a genuinely threatening environment,
+                the wisest path is often to avoid technological solutions altogether.</para>
+        </section>
+        <section xml:id="faq_whois">
+            <title xml:id="faq_whois.title">Who made &program_name; and &chat_client;?</title>
+            <para>&program_name; was created by a team of programmers, cryptographers,
+                mathematicians, academics, tech industry veterans, and privacy advocates. Our
+                current core contributors and past contributors are listed at <link xlink:href="https://katzenpost.network/pages/team/">&program_name; Team</link>,
+                and you can see who has been doing what by visiting our <link xlink:href="https://github.com/katzenpost">GitHub site</link>. </para>
+        </section>
+    </section>
+</section>
