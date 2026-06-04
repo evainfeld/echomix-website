@@ -32,7 +32,7 @@ theme = 'docsy-theme'
 
 [[menus.main]]
   name = "Code"
-  url = "https://github.com/katzenpost/echomix"
+  url = "https://github.com/katzenpost/"
   weight = 20
 
 # [[menus.main]]
