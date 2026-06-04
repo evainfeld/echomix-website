@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.162.1
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,7 +46,9 @@ jobs:
         # Use themes/docsy/theme — that's where Bootstrap & FontAwesome live.
         # The parent themes/docsy/ is a workspace root that includes docsy.dev
         # which is not needed for building and can fail in CI.
-        run: npm ci
+        # Use npm install (not npm ci) because docsy's .gitignore excludes
+        # theme/package-lock.json, so no lockfile is present after checkout.
+        run: npm install
         working-directory: themes/docsy/theme
 
       - name: Configure GitHub Pages
