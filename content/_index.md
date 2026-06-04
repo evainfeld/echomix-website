@@ -1,27 +1,31 @@
 ---
-title: "Echomix Chat"
-description: "Echomix is a free and open source chat program that communicates through the Katzenpost anonymity platform"
+title: "EchoMix"
+description: "Advanced mixnet protocols for secure, private, and anonymous online communication."
 ---
 
-<!-- This is the index for the whole site. -->
-
 <!-- Hero -->
-{{< blocks/cover image_anchor="top" height="auto" color="black">}}
-<h1>Echomix: Anonymous Chat</h1>
-<p>Secure communication over a decentralized network </p>
+{{< blocks/cover image_anchor="top" height="auto" color="black" >}}
+<div class="td-cover-logo">
+  <img src="/img/echomix_160.png" alt="EchoMix logo" />
+</div>
+<h1>Anonymous Communication<br>For Everyone</h1>
+<p class="lead">Advanced mixnet protocols for secure, private, and anonymous online communication.</p>
 {{< /blocks/cover >}}
 
-<!-- Lead Section -->
-{{% blocks/lead color="primary" title="" %}}
-Aliquam vitae metus quis nibh bibendum tempus vel nec augue. Curabitur scelerisque mauris ut est luctus pharetra. 
-Curabitur et sapien gravida, malesuada nunc eu, ultricies leo. Morbi eu viverra nisi. Curabitur in nisi et erat 
-pulvinar finibus et sed ante. Aliquam ut massa non mauris fringilla elementum non id leo. In tempor, nulla et 
-vehicula sodales, dolor erat sagittis nibh, vitae aliquam magna quam non ipsum
+<!-- Feature cards -->
+{{% blocks/section color="black" type="row" %}}
 
+{{% blocks/feature icon="fa-solid fa-circle-info" title="About" url="/about/" %}}
+What is EchoMix and why is it needed
+{{% /blocks/feature %}}
 
-<!-- Triplet Section: Gray -->
-{{% blocks/section color="dark" type="row" %}}
+{{% blocks/feature icon="fa-solid fa-download" title="Downloads" url="/docs/" %}}
+Download links and instructions on building the app from source code
+{{% /blocks/feature %}}
 
+{{% blocks/feature icon="fa-solid fa-book" title="Documentation" url="/docs/" %}}
+Detailed guides, documentation of the mixnet design, and more
+{{% /blocks/feature %}}
 
-{{% /blocks/section %}}{{% /blocks/lead %}}
+{{% /blocks/section %}}
 

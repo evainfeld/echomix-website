@@ -1,0 +1,41 @@
+// EchoMix dark theme — Bootstrap/Docsy variable overrides
+
+// ── Colour palette ──────────────────────────────────────────────────────────
+$echomix-bg:        #0d1117;   // page background
+$echomix-surface:   #161b22;   // card / navbar surface
+$echomix-surface2:  #1e2530;   // slightly lighter surface
+$echomix-border:    #30363d;   // borders / dividers
+$echomix-indigo:    #6366f1;   // primary accent (Donate button, links)
+$echomix-teal:      #2dd4bf;   // secondary accent (gradient end)
+
+// ── Bootstrap core ──────────────────────────────────────────────────────────
+$primary:           $echomix-indigo;
+$body-bg:           $echomix-bg;
+$body-color:        #ffffff;
+$link-color:        $echomix-teal;
+$link-hover-color:  lighten($echomix-teal, 10%);
+
+// ── Typography ──────────────────────────────────────────────────────────────
+$font-family-sans-serif: "Inter", system-ui, -apple-system, sans-serif;
+$headings-font-weight:   700;
+$headings-color:         #ffffff;
+
+// ── Navbar ───────────────────────────────────────────────────────────────────
+$td-navbar-bg:           $echomix-surface;
+$td-navbar-text-color:   #ffffff;
+$navbar-dark-color:      rgba(255, 255, 255, 0.85);
+$navbar-dark-hover-color: #ffffff;
+
+// ── Sidebar / TOC ────────────────────────────────────────────────────────────
+$td-sidebar-bg-color:    $echomix-surface;
+$td-sidebar-border-color: $echomix-border;
+
+// ── Cards ────────────────────────────────────────────────────────────────────
+$card-bg:            $echomix-surface;
+$card-border-color:  $echomix-border;
+$card-color:         #ffffff;
+
+// ── Borders / misc ───────────────────────────────────────────────────────────
+$border-color:       $echomix-border;
+$border-radius:      0.75rem;
+$border-radius-lg:   1rem;

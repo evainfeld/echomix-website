@@ -2,7 +2,6 @@
 title: "Echomix blog"
 linkTitle: "Blog"
 draft: false
-menu: {main: {weight: 70}}
 ---
 
 **So you say you want some blog posts**

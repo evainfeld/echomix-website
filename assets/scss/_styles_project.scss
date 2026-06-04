@@ -1,0 +1,260 @@
+// EchoMix custom styles
+
+// ── Global dark body ─────────────────────────────────────────────────────────
+body {
+  background-color: #0d1117;
+  color: #ffffff;
+}
+
+// ── Navbar ───────────────────────────────────────────────────────────────────
+.td-navbar {
+  background-color: #161b22 !important;
+  border-bottom: 1px solid #30363d;
+
+  .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    img {
+      height: 28px;
+      width: auto;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 0.9rem;
+
+    &:hover {
+      color: #ffffff !important;
+    }
+  }
+
+  // Donate button — last nav item styled as a pill button
+  .navbar-nav .nav-item:last-child .nav-link {
+    background-color: #6366f1;
+    color: #ffffff !important;
+    border-radius: 0.5rem;
+    padding: 0.35rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+
+    &:hover {
+      background-color: #4f46e5;
+    }
+  }
+
+  // Donate button
+  .btn-donate {
+    background-color: #6366f1;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.35rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    &:hover {
+      background-color: #4f46e5;
+      color: #ffffff !important;
+    }
+  }
+}
+
+// ── Hero / Cover block ───────────────────────────────────────────────────────
+.td-cover-block {
+  background-color: #0d1117 !important;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
+  .td-cover-logo {
+    margin-bottom: 1.5rem;
+
+    img {
+      height: 100px;
+      width: auto;
+    }
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+  }
+
+  p, .lead {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+// ── Feature card section ─────────────────────────────────────────────────────
+.td-box {
+  background-color: #0d1117;
+
+  &--dark, &--black {
+    background-color: #0d1117 !important;
+  }
+
+  &--light, &--white {
+    background-color: #161b22 !important;
+    color: #ffffff;
+  }
+
+  // Individual feature card boxes
+  .col-lg-4 {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+      border-color: #6366f1;
+    }
+
+    h4 {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    p, .mb-0 {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Feature cards row
+.section-index .card,
+.td-box .card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 0.75rem;
+  color: #ffffff;
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  h5, .card-title {
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  p, .card-text {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.875rem;
+  }
+
+  &:hover {
+    border-color: #6366f1;
+    transition: border-color 0.2s ease;
+  }
+}
+
+// blocks/feature icon
+.td-box--feature-icon {
+  color: #6366f1;
+}
+
+// ── Content pages ─────────────────────────────────────────────────────────────
+.td-main {
+  background-color: #0d1117;
+
+  main {
+    background-color: #0d1117;
+  }
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+article, .td-content {
+  p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.75;
+  }
+
+  a {
+    color: #2dd4bf;
+    &:hover { color: lighten(#2dd4bf, 10%); }
+  }
+}
+
+// ── Table (Presentations page) ───────────────────────────────────────────────
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #ffffff;
+
+  th {
+    background-color: #161b22;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #30363d;
+  }
+
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #1e2530;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  tr:nth-child(even) td {
+    background-color: #161b22;
+  }
+
+  tr:hover td {
+    background-color: #1e2530;
+  }
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+.td-footer {
+  background-color: #161b22 !important;
+  border-top: 1px solid #30363d !important;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+// ── Sidebar ───────────────────────────────────────────────────────────────────
+.td-sidebar {
+  background-color: #161b22;
+  border-right: 1px solid #30363d;
+
+  nav a {
+    color: rgba(255, 255, 255, 0.75);
+    &:hover, &.active { color: #ffffff; }
+  }
+}
+
+// ── Scrollbar ─────────────────────────────────────────────────────────────────
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0d1117; }
+::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }

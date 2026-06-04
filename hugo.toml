@@ -1,6 +1,6 @@
 baseURL = 'https://example.org/'
 locale = 'en-us'
-title = 'My New Hugo Site'
+title = 'EchoMix'
 theme = 'docsy-theme'
 
 [markup.goldmark.renderer]
@@ -8,3 +8,36 @@ theme = 'docsy-theme'
 
 [security]
   allowContent = ['.*']
+
+[params]
+  description = "Advanced mixnet protocols for secure, private, and anonymous online communication."
+  github_repo = "https://github.com/katzenpost/echomix"
+
+  [params.ui]
+    navbar_logo = true
+    sidebar_search_disable = true
+    breadcrumb_disable = true
+    navbar_translucent_over_cover_disable = true
+
+  [params.links]
+    [[params.links.user]]
+      name = "Donate"
+      url = "https://example.org/donate"
+      icon = "fa fa-heart"
+
+[[menus.main]]
+  name = "About"
+  url = "/about/"
+  weight = 10
+
+[[menus.main]]
+  name = "Code"
+  url = "https://github.com/katzenpost/echomix"
+  weight = 20
+
+[[menus.main]]
+  name = "Donate"
+  url = "/donate/"
+  weight = 30
+  [menus.main.params]
+    class = "btn btn-donate"

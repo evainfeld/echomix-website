@@ -2,7 +2,6 @@
 title: "Echomix Documentation"
 linkTitle: "Documentation"
 draft: false
-menu: {main: {weight: 70}}
 ---
 
 **All the docs right here, no muss and fuss**
