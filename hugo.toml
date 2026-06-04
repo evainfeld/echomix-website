@@ -35,9 +35,9 @@ theme = 'docsy-theme'
   url = "https://github.com/katzenpost/echomix"
   weight = 20
 
-[[menus.main]]
-  name = "Donate"
-  url = "/donate/"
-  weight = 30
-  [menus.main.params]
-    class = "btn btn-donate"
+# [[menus.main]]
+#   name = "Donate"
+#   url = "/donate/"
+#   weight = 30
+#   [menus.main.params]
+#     class = "btn btn-donate"
