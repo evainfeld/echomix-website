@@ -1,0 +1,16 @@
+{{ $name := .Get "name" }}
+{{ $url  := .Get "url" }}
+{{ $ext  := .Get "ext" | upper }}
+{{ $size := .Get "size" }}
+<a class="td-download-link" href="{{ $url }}">
+  <span class="td-download-link__icon"><i class="fas fa-file-download"></i></span>
+  <span class="td-download-link__body">
+    <span class="td-download-link__name">{{ $name }}</span>
+    {{ if or $ext $size }}
+    <span class="td-download-link__meta">
+      {{ with $ext }}<span class="td-download-link__ext">{{ . }}</span>{{ end }}
+      {{ with $size }}<span class="td-download-link__size">{{ . }}</span>{{ end }}
+    </span>
+    {{ end }}
+  </span>
+</a>
