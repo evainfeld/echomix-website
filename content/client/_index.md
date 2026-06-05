@@ -3,12 +3,15 @@ title: "Download EchoMix"
 linkTitle: "Downloads"
 description: "Download and install the EchoMix chat client"
 ---
+<br />
+<br />
+<br />
 
 ## EchoMix Client (Beta)
 
 The EchoMix client — **katzenqt** — is a Qt/QML desktop application for Linux that connects to the Katzenpost anonymity network.
 
-{{< alert color="warning" >}}
+{{< alert color="danger" >}}
 **Beta software.** Do not rely on this software for anonymity, security, or privacy. It is intended for developers and early testers only.
 {{< /alert >}}
 

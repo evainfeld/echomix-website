@@ -15,7 +15,7 @@ Echomix is the next step in the evolution of Katzenpost, the world's first post-
 
 Tor and VPNs are great tools in their own domain, and for teir stated theat models, but they are an elegant weapon for a more civilised age. A surveillance adversary, such as a government agency or a big tech corporation, that can see both ends of a connection can still easily match them. Add to that a collection of confirmation and correlation attacks that have been used to de-anonymize Tor and VPN users in practice, and anyone serious about their safety online may start looking for something stronger. That's where Echomix steps in. 
 
-Made by a team of pedantic, paranoid hackers who will always choose security over the easy way, this tool aims to give an observer nothings it can feasibly protect.
+Made by a team of pedantic, paranoid hackers who will always choose security over the easy way, this tool aims to give an observer nothing it can feasibly protect.
 
 ### EchoMix Politics and Values
 
