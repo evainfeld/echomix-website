@@ -2,32 +2,32 @@
 title: "About"
 linkTitle: "About"
 ---
+<br />
+<br />
+<br />
+
+### Echomix is made by the Katzenpost Project
+
+Echomix is the next step in the evolution of Katzenpost, the world's first post-quantum mix network. Katzenpost is a free and open-source software project advancing anonymous communication through powerful, realistic threat models and rigorous security goals.
 
 
+### Aiming to resist realistic modern adversaries
 
-## The World's First Post-Quantum Mixnet
+Tor and VPNs are great tools in their own domain, and for teir stated theat models, but they are an elegant weapon for a more civilised age. A surveillance adversary, such as a government agency or a big tech corporation, that can see both ends of a connection can still easily match them. Add to that a collection of confirmation and correlation attacks that have been used to de-anonymize Tor and VPN users in practice, and anyone serious about their safety online may start looking for something stronger. That's where Echomix steps in. 
 
-Katzenpost is a free and open-source software project advancing anonymous communication through innovative mixnet protocols.
+Made by a team of pedantic, paranoid hackers who will always choose security over the easy way, this tool aims to give an observer nothings it can feasibly protect.
 
-As the world's first post-quantum mixnet, Katzenpost integrates cutting-edge cryptography to ensure future-proof privacy. Our rigorous security design includes the first-ever comprehensive threat model for a mixnet, setting a new standard for secure, resilient online communication.
+### EchoMix Politics and Values
 
-## Current privacy tools offer inadequate anonymity
+Surveillance is an instrument of power. It is part of an apparatus of control. While the violent conflicts, the corrupt economic systems and climate catastrophe are direct problems, surveillance and every day control is an obstacle to us finding solutions. It is having profound effects on our social structure and solidifying destructive power systems worldwide. "If information is power, then privacy is freedom."
 
-We are dealing with very powerful surveillance adversaries, and existing privacy tools are not sufficient. VPNs and Tor hide your IP address but do not protect against traffic analysis at the network level. A well-resourced adversary who can observe both ends of a connection can correlate traffic and de-anonymize users.
+While surveillance is nothing new, technological changes have given governments and corporations an unprecedented ability to monitor everyone's lives. [Surveilling us has become cheaper than figuring out whom to surveil](https://www.schneier.com/blog/archives/2013/03/surveillance_as_1.html). Governmental surveillance is strongly linked to totalitarian control and digital warfare. Security vulnerabilities that enable one enable all. Surveillance is also strongly linked to conventional warfare. As Gen. Michael Hayden has explained, ["we kill people based on metadata"](https://www.nybooks.com/articles/2014/05/08/we-kill-people-based-metadata/); and in the age of AI, drone warfare is being conducted [without adequate human supervision ](https://theintercept.com/2024/05/22/whatsapp-security-vulnerability-meta-israel-palestine/).
 
-Katzenpost is designed from the ground up to defeat this class of attack.
-
-## EchoMix Politics and Values
-
-Surveillance is an instrument of power. It is part of an apparatus of control. Power need not be in-your-face to be effective: subtle, psychological, nearly invisible methods can actually be more effective.
-
-While surveillance is nothing new, technological changes have given governments and corporations an unprecedented capacity to monitor everyone's communication and movement. Surveilling everyone has become cheaper than figuring out whom to surveil, and the [marginal cost is now tiny](https://www.schneier.com/blog/archives/2013/03/surveillance_as_1.html). The Internet, once seen by many as a tool for emancipation, is being transformed into the most dangerous facilitator for totalitarianism ever seen. Governmental surveillance is strongly linked to cyberwar. Security vulnerabilities that enable one enable the other. And, at least in the USA, the same individuals and agencies handle both jobs. Surveillance is also strongly linked to conventional warfare. As Gen. Michael Hayden has explained, ["we kill people based on metadata"](https://www.nybooks.com/articles/2014/05/08/we-kill-people-based-metadata/); surveillance and assassination by drones are tightly coupled.
-
-## Presentations
+### Presentations
 
 Explore talks and slides showcasing Katzenpost's innovative work on anonymous communication and mix network designs.
 
-### 📹 Live recorded videos
+
 
 | Date | Speaker(s) | Title |
 |------|------------|-------|
