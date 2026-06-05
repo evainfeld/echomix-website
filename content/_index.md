@@ -19,7 +19,7 @@ description: "Advanced mixnet protocols for secure, private, and anonymous onlin
 What is EchoMix and why is it needed
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa-solid fa-download" title="Downloads" url="/client" %}}
+{{% blocks/feature icon="fa-solid fa-download" title="Client Beta" url="/client" %}}
 Download links and instructions on building the app from source code
 {{% /blocks/feature %}}
 
