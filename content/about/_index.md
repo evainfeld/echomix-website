@@ -3,6 +3,8 @@ title: "About"
 linkTitle: "About"
 ---
 
+
+
 ## The World's First Post-Quantum Mixnet
 
 Katzenpost is a free and open-source software project advancing anonymous communication through innovative mixnet protocols.
@@ -32,5 +34,4 @@ Explore talks and slides showcasing Katzenpost's innovative work on anonymous co
 | 2024 / 01 | Dr. Eva Infeld and Leif Ryge | [37C3 \| Project status session at Chaos Communication Congress →](https://www.youtube.com/watch?v=1ev4r-aZmFM) |
 | 2018 / 08 | David Stainton | [BornHack 2018 \| Modern Mix Network Design →](https://www.youtube.com/watch?v=DhBWKWQztdA) |
 | 2017 / 12 | Jeff Burdges and David Stainton | [34C3 \| Practical Mix Network Design →](https://media.ccc.de/v/34c3-9062-practical_mix_network_design) |
-| 2017 / 11 | David Stainton | [Anonymizing Cryptocurrencies from Network Observers with Mix Networks →](https://www.youtube.com/watch?v=pHLbe1JKrAQ) |
-| 2017 / 07 | David Stainton | [Shows How Mix Networks Improve Privacy →](https://www.youtube.com/watch?v=vDJihqksd6w) |
+
