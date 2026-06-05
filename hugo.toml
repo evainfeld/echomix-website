@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://echomix.org/'
 locale = 'en-us'
 title = 'EchoMix'
 theme = 'docsy-theme'
@@ -11,7 +11,7 @@ theme = 'docsy-theme'
 
 [params]
   description = "Advanced mixnet protocols for secure, private, and anonymous online communication."
-  github_repo = "https://github.com/katzenpost/echomix"
+  github_repo = "https://github.com/katzenpost/"
 
   [params.ui]
     navbar_logo = true
@@ -22,7 +22,7 @@ theme = 'docsy-theme'
   [params.links]
     [[params.links.user]]
       name = "Donate"
-      url = "https://example.org/donate"
+      url = " "
       icon = "fa fa-heart"
 
 [[menus.main]]
